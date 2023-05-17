@@ -1,31 +1,31 @@
-// // chess-master
-// // Дано число N. Определите, сколькими способами можно расставить
-// // на доске NxN N ферзей, не бьющих друг друга (N <= 10)
+// chess-master
+// Дано число N. Определите, сколькими способами можно расставить
+// на доске NxN ферзей, не бьющих друг друга
 
 #include <iostream>
 using namespace std;
  
 
-const int SIZE = 8; // размер поля
+const int SIZE = 5; // размер поля
 int queenCount = 0; // количество решений
 int board[SIZE][SIZE];
  
 int queenExistence(int a, int b) {
 // проверяет, нет ли уже установленных ферзей, по вертикали, диагоналям
 // 0 - ферзя нет, 1 - ферзь установлен
-    for (int i = 0; i < a; i++) {
+    for (int i = 0; i <= a; i++) {
         if (board[i][b]) {
             return 0;
         }
     }
  
-    for (int i = 1; (i <= a) && ((b - i) >= 0); i++) {
+    for (int i = 0; (i <= a) && ((b - i) >= 0); i++) {
         if (board[a - i][b - i]) {
             return 0;
         }
     }
 
-    for (int i = 1; (i <= a) && ((b + i) < SIZE); i++) {
+    for (int i = 0; (i <= a) && ((b + i) < SIZE); i++) {
         if (board[a - i][b + i]) {
             return 0;
         }
@@ -35,7 +35,7 @@ int queenExistence(int a, int b) {
 }
 
 void findSolutions(int a) {
-// a - номер очередной строки в которую нужно поставить очередного ферзя
+// a - номер строки в которую нужно поставить очередного ферзя
 // функция findSolutions() - пробует найти результаты решений
     if (a == SIZE) {
         queenCount++;
